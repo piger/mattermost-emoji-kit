@@ -23,7 +23,7 @@ Create a configuration file, `importer.cfg`:
 
     url = my-mattermost-instance.example.com
     login_id = my-login-id
-    password = my-precious-token
+    password = my-precious-password
 
 **NOTE** I didn't find a way to import emojis into Mattermost by using an access token; you'll have
 to use your Mattermost login and password.
