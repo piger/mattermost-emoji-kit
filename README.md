@@ -3,6 +3,8 @@
 A couple of simple scripts to download emojis from [slackmojis.com](https://slackmojis.com) and
 import them into a [Mattermost](https://mattermost.com/) instance.
 
+Tested on: Mattermost 5.20.x.
+
 ## Requirements
 
 It's easier to execute these scripts with [poetry](https://github.com/python-poetry/poetry).
