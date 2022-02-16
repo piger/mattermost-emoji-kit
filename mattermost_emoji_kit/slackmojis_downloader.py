@@ -46,7 +46,7 @@ def validate_url(ctx, param, value):
 @click.option('--destdir', type=click.Path(file_okay=False, dir_okay=True, resolve_path=True),
               default='emojis', help='Destination directory for the downloaded emojis')
 @click.argument('slackmojis_url', callback=validate_url)
-def cli(destdir, slackmojis_url):
+def main(destdir, slackmojis_url):
     """Download emojis from slackmojis.com.
 
     Example:
@@ -85,4 +85,4 @@ def cli(destdir, slackmojis_url):
 
 
 if __name__ == '__main__':
-    cli()
+    main()

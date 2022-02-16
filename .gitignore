@@ -1,2 +1,4 @@
 /venv/
 /importer.cfg
+__pycache__
+*.egg-info/

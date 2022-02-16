@@ -1,0 +1,13 @@
+; Global Editor Config for zdops
+; This is an ini style configuration. See http://editorconfig.org/ for more information on this file.
+
+root = true
+
+[*]
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.py]
+indent_style = space
+indent_size = 4

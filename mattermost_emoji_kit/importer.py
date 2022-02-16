@@ -27,7 +27,7 @@ def read_config(fd):
 @click.option('--config', 'config_fd', default='importer.cfg', type=click.File())
 @click.argument('emojis_dir', type=click.Path(file_okay=False, dir_okay=True, resolve_path=True),
                 required=True)
-def cli(config_fd, emojis_dir):
+def main(config_fd, emojis_dir):
     """Import emojis into a Mattermost instance."""
 
     config = read_config(config_fd)
@@ -69,4 +69,4 @@ def cli(config_fd, emojis_dir):
 
 
 if __name__ == '__main__':
-    cli()
+    main()
