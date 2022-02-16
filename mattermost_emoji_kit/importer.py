@@ -2,7 +2,6 @@
 
 import os
 import sys
-import json
 import click
 from mattermostdriver import Driver
 
@@ -25,9 +24,10 @@ def read_config(fd):
 
 @click.command()
 @click.option('--config', 'config_fd', default='importer.cfg', type=click.File())
+@click.option('--debug', is_flag=True, help="Enable debug mode")
 @click.argument('emojis_dir', type=click.Path(file_okay=False, dir_okay=True, resolve_path=True),
                 required=True)
-def main(config_fd, emojis_dir):
+def main(config_fd, debug, emojis_dir):
     """Import emojis into a Mattermost instance."""
 
     config = read_config(config_fd)
@@ -36,7 +36,7 @@ def main(config_fd, emojis_dir):
         sys.exit(1)
 
     filenames = []
-    for root, dirs, files in os.walk(emojis_dir):
+    for root, _, files in os.walk(emojis_dir):
         filenames.extend(os.path.join(root, name) for name in files)
 
     if not filenames:
@@ -48,10 +48,10 @@ def main(config_fd, emojis_dir):
         'login_id': config['login_id'],
         'password': config['password'],
         'port': 443,
-        # 'debug': True,
+        'debug': debug,
     })
 
-    login_result = driver.login()
+    _ = driver.login()
 
     for filename in filenames:
         emoji_name = os.path.splitext(
@@ -61,6 +61,7 @@ def main(config_fd, emojis_dir):
             sys.exit(1)
 
         emoji_name = emoji_name.replace('_', '-')
+
         print(f"importing: {emoji_name}")
         try:
             driver.emoji.create_custom_emoji(emoji_name, { 'image': (filename, open(filename, 'rb')) })
